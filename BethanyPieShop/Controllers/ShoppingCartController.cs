@@ -1,0 +1,49 @@
+﻿using BethanyPieShop.Models;
+using BethanyPieShop.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+
+namespace BethanyPieShop.Controllers
+{
+    public class ShoppingCartController : Controller
+    {
+        private readonly IPieRepository _pieRepository;
+        private readonly IShoppingCart _shoppingCart;
+
+        public ShoppingCartController(IPieRepository pieRepository, IShoppingCart shoppingCart)
+        {
+            _pieRepository = pieRepository;
+            _shoppingCart = shoppingCart;
+        }
+
+        public ViewResult Index()
+        {
+            var items = _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = items;
+
+            var shoppingCartViewModel = new ShoppingCartViewModel(_shoppingCart, _shoppingCart.GetShoppingCartTotal());
+
+            return View(shoppingCartViewModel);
+        }
+        public RedirectToActionResult AddToShoppingCart(int pieId) //we dont have this and RemoveFromShoppingCart view because we invoke them in _PieCard view
+        {
+            var selectedPie = _pieRepository.AllPies.FirstOrDefault(p => p.PieId == pieId);
+
+            if (selectedPie != null)
+            {
+                _shoppingCart.AddToCart(selectedPie);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult RemoveFromShoppingCart(int pieId)
+        {
+            var selectedPie = _pieRepository.AllPies.FirstOrDefault(p => p.PieId == pieId);
+
+            if (selectedPie != null)
+            {
+                _shoppingCart.RemoveFromCart(selectedPie);
+            }
+            return RedirectToAction("Index"); //we are redirecting to Index view mara piecardshi da details viewshi rato vwert   mivxvdi
+        }
+    }
+}

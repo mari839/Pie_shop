@@ -1,0 +1,14 @@
+﻿@*@model IEnumerable<BethanyPieShop.Models.Pie> //???????I can now access properties on that model that will be passed on me*@
+
+@model PieListViewModel
+
+@*what is viewbag*@
+@*<h1>@ViewBag.CurrentCategory</h1>*@ @*@is a indication for razor to know that code is coming and ViewBag.CurrentCategory will be avaluated at runtime on the server-side*@
+    
+<h1>@Model.CurrentCategory</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+@foreach(var pie in Model.Pies)
+{
+        <partial name="_PieCard" model="pie" />
+}
+</div>
