@@ -16,7 +16,7 @@ namespace BethanyPieShop.Controllers
         }
         //public IActionResult List() //we have to create view with the same name as the method with View, so it will find which view it has to display
         //{
-        ////    ViewBag.CurrentCategory = "Cheese cakes"; //es ras shvreba
+        ////    ViewBag.CurrentCategory = "Cheese cakes"; 
         ////    return View(_pieRepository.AllPies);
 
         //    PieListViewModel pieListViewModel = new PieListViewModel(_pieRepository.AllPies, "All pies ");
