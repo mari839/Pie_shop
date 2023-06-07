@@ -43,7 +43,7 @@ namespace BethanyPieShop.Controllers
             {
                 _shoppingCart.RemoveFromCart(selectedPie);
             }
-            return RedirectToAction("Index"); //we are redirecting to Index view mara piecardshi da details viewshi rato vwert   mivxvdi
+            return RedirectToAction("Index"); //we are redirecting to Index view 
         }
     }
 }
